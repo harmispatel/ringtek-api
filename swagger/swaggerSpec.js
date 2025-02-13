@@ -10,12 +10,17 @@ const options = {
     },
     servers: [
       {
-        url: "ringtek-api-five.vercel.app/api",
-        description: "Local server",
+        // Specify the correct URL for your live server or local server
+        url: "https://ringtek-api-five.vercel.app/api", // Updated to full URL
+        description: "Production server",
+      },
+      {
+        url: "http://localhost:3000/api", // Local server for development
+        description: "Local development server",
       },
     ],
   },
-  apis: ["./swaggerControllers/*.js", "./routes/*.js"],
+  apis: ["./swaggerControllers/*.js", "./routes/*.js"], // Ensure these paths are correct based on your folder structure
 };
 
 const swaggerSpec = swaggerJSDoc(options);
