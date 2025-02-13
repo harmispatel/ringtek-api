@@ -10,7 +10,7 @@ const options = {
     },
     servers: [
       {
-        url: "https://ringtek-api.vercel.app/api",
+        url: "ringtek-api-five.vercel.app/api",
         description: "Local server",
       },
     ],
