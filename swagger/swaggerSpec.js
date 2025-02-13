@@ -13,10 +13,6 @@ const options = {
         url: "http://localhost:8181/api",
         description: "Local server",
       },
-      {
-        url: "https://ringtek-api-five.vercel.app/",
-        description: "Vercel server",
-      },
     ],
   },
   apis: ["./swaggerControllers/*.js", "./routes/*.js"],
