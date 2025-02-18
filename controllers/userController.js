@@ -19,24 +19,15 @@ const getUsers = async (req, res) => {
 
 const createUser = async (req, res) => {
   try {
-    const { userName, userEmail, userPassword, user_type } = req.body;
-    if (!userName || !userEmail || !userPassword || !user_type) {
+    const { name, email, password, user_type } = req.body;
+    if (!name || !email || !password || !user_type) {
       return res.status(400).json({
         message: "All fields are required",
         success: false,
       });
     }
 
-    const trimmedEmail = userEmail.trim().toLowerCase();
-
-    if (!trimmedEmail) {
-      return res.status(400).json({
-        message: "Email cannot be empty",
-        success: false,
-      });
-    }
-
-    const existingUser = await User.findOne({ userEmail: trimmedEmail });
+    const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).json({
         message: "Email already in use",
@@ -44,12 +35,7 @@ const createUser = async (req, res) => {
       });
     }
 
-    const newUser = new User({
-      userName,
-      userEmail: trimmedEmail,
-      userPassword,
-      user_type,
-    });
+    const newUser = new User({ name, email, password, user_type });
     await newUser.save();
 
     res.status(201).json({
@@ -68,9 +54,9 @@ const createUser = async (req, res) => {
 
 const editUser = async (req, res) => {
   const { userId } = req.params;
-  const { userName, userEmail, userPassword, user_type } = req.body;
+  const { name, email, password, user_type } = req.body;
 
-  if (!userName && !userEmail && !userPassword && !user_type) {
+  if (!name && !email && !password && !user_type) {
     return res.status(400).json({
       message: "At least one field is required to update.",
       success: false,
@@ -80,7 +66,7 @@ const editUser = async (req, res) => {
   try {
     const updatedUser = await User.findByIdAndUpdate(
       userId,
-      { userName, userEmail, userPassword, user_type },
+      { name, email, password, user_type },
       { new: true }
     );
 

@@ -41,32 +41,32 @@ const createCustomer = async (req, res) => {
     no_of_users,
   } = req.body;
 
-  if (
-    !number_asked ||
-    !status ||
-    !fullName ||
-    !email ||
-    !password ||
-    !plan_type ||
-    !team_member ||
-    !plans ||
-    !number_type ||
-    !toll_free_no ||
-    !local_no ||
-    !current_no ||
-    !price ||
-    !address ||
-    !state ||
-    !city ||
-    !zip_code ||
-    !temp ||
-    !no_of_users
-  ) {
-    return res.status(400).json({
-      message: "All fields are required",
-      success: false,
-    });
-  }
+  // if (
+  //   !number_asked ||
+  //   !status ||
+  //   !fullName ||
+  //   !email ||
+  //   !password ||
+  //   !plan_type ||
+  //   !team_member ||
+  //   !plans ||
+  //   !number_type ||
+  //   !toll_free_no ||
+  //   !local_no ||
+  //   !current_no ||
+  //   !price ||
+  //   !address ||
+  //   !state ||
+  //   !city ||
+  //   !zip_code ||
+  //   !temp ||
+  //   !no_of_users
+  // ) {
+  //   return res.status(400).json({
+  //     message: "All fields are required",
+  //     success: false,
+  //   });
+  // }
 
   try {
     const newCustomer = new Customer({
@@ -131,32 +131,32 @@ const editCustomer = async (req, res) => {
     no_of_users,
   } = req.body;
 
-  if (
-    !number_asked ||
-    !status ||
-    !fullName ||
-    !email ||
-    !password ||
-    !plan_type ||
-    !team_member ||
-    !plans ||
-    !number_type ||
-    !toll_free_no ||
-    !local_no ||
-    !current_no ||
-    !price ||
-    !address ||
-    !state ||
-    !city ||
-    !zip_code ||
-    !temp ||
-    !no_of_users
-  ) {
-    return res.status(400).json({
-      message: "At least one field is required to update.",
-      success: false,
-    });
-  }
+  // if (
+  //   !number_asked ||
+  //   !status ||
+  //   !fullName ||
+  //   !email ||
+  //   !password ||
+  //   !plan_type ||
+  //   !team_member ||
+  //   !plans ||
+  //   !number_type ||
+  //   !toll_free_no ||
+  //   !local_no ||
+  //   !current_no ||
+  //   !price ||
+  //   !address ||
+  //   !state ||
+  //   !city ||
+  //   !zip_code ||
+  //   !temp ||
+  //   !no_of_users
+  // ) {
+  //   return res.status(400).json({
+  //     message: "At least one field is required to update.",
+  //     success: false,
+  //   });
+  // }
 
   try {
     const updatedCustomer = await Customer.findByIdAndUpdate(

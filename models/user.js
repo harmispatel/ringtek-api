@@ -1,19 +1,19 @@
 const mongoose = require("mongoose");
 
 const UsersSchema = new mongoose.Schema({
-  userName: {
+  name: {
     type: String,
     required: true,
     trim: true,
   },
-  userEmail: {
+  email: {
     type: String,
     required: true,
     unique: true,
     trim: true,
     lowercase: true,
   },
-  userPassword: {
+  password: {
     type: String,
     required: true,
   },
@@ -36,5 +36,5 @@ UsersSchema.pre("save", function (next) {
   next();
 });
 
-const Users = mongoose.model("Users", UsersSchema);
-module.exports = Users;
+const UsersData = mongoose.model("UsersData", UsersSchema);
+module.exports = UsersData;
