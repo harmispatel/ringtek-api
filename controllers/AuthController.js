@@ -69,9 +69,9 @@ const registerUser = async (req, res) => {
 };
 
 const loginUser = async (req, res) => {
-  const { usernameOrEmail, password } = req.body;
+  const { email, password } = req.body;
 
-  if (!usernameOrEmail || !password) {
+  if (!email || !password) {
     return res.status(400).json({
       message: "Username or email and password are required",
       success: false,
@@ -81,10 +81,10 @@ const loginUser = async (req, res) => {
   try {
     let user;
     const emailRegex = /\S+@\S+\.\S+/;
-    if (emailRegex.test(usernameOrEmail)) {
-      user = await UserAuth.findOne({ email: usernameOrEmail });
+    if (emailRegex.test(email)) {
+      user = await UserAuth.findOne({ email: email });
     } else {
-      user = await UserAuth.findOne({ username: usernameOrEmail });
+      user = await UserAuth.findOne({ username: email });
     }
 
     if (!user) {
@@ -109,7 +109,7 @@ const loginUser = async (req, res) => {
       message: "Login successful",
       success: true,
       data: {
-        username: usernameOrEmail,
+        username: email,
         password: password,
       },
     });

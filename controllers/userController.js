@@ -19,15 +19,15 @@ const getUsers = async (req, res) => {
 
 const createUser = async (req, res) => {
   try {
-    const { name, email, password, user_type } = req.body;
-    if (!name || !email || !password || !user_type) {
+    const { userName, userEmail, userPassword, user_type } = req.body;
+    if (!userName || !userEmail || !userPassword || !user_type) {
       return res.status(400).json({
         message: "All fields are required",
         success: false,
       });
     }
 
-    const existingUser = await User.findOne({ email });
+    const existingUser = await User.findOne({ userEmail });
     if (existingUser) {
       return res.status(400).json({
         message: "Email already in use",
@@ -35,7 +35,7 @@ const createUser = async (req, res) => {
       });
     }
 
-    const newUser = new User({ name, email, password, user_type });
+    const newUser = new User({ userName, userEmail, userPassword, user_type });
     await newUser.save();
 
     res.status(201).json({
@@ -54,9 +54,9 @@ const createUser = async (req, res) => {
 
 const editUser = async (req, res) => {
   const { userId } = req.params;
-  const { name, email, password, user_type } = req.body;
+  const { userName, userEmail, userPassword, user_type } = req.body;
 
-  if (!name && !email && !password && !user_type) {
+  if (!userName && !userEmail && !userPassword && !user_type) {
     return res.status(400).json({
       message: "At least one field is required to update.",
       success: false,
@@ -66,7 +66,7 @@ const editUser = async (req, res) => {
   try {
     const updatedUser = await User.findByIdAndUpdate(
       userId,
-      { name, email, password, user_type },
+      { userName, userEmail, userPassword, user_type },
       { new: true }
     );
 
