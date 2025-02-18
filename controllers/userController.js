@@ -27,7 +27,16 @@ const createUser = async (req, res) => {
       });
     }
 
-    const existingUser = await User.findOne({ userEmail });
+    const trimmedEmail = userEmail.trim().toLowerCase();
+
+    if (!trimmedEmail) {
+      return res.status(400).json({
+        message: "Email cannot be empty",
+        success: false,
+      });
+    }
+
+    const existingUser = await User.findOne({ userEmail: trimmedEmail });
     if (existingUser) {
       return res.status(400).json({
         message: "Email already in use",
@@ -35,7 +44,12 @@ const createUser = async (req, res) => {
       });
     }
 
-    const newUser = new User({ userName, userEmail, userPassword, user_type });
+    const newUser = new User({
+      userName,
+      userEmail: trimmedEmail,
+      userPassword,
+      user_type,
+    });
     await newUser.save();
 
     res.status(201).json({
