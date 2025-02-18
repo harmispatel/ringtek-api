@@ -3,6 +3,14 @@ const express = require("express");
 const { getAuthUsersList } = require("../controllers/userAuthController");
 
 const {
+  getAuthUsers,
+  registerUser,
+  loginUser,
+  forgotPassword,
+  resetPassword,
+} = require("../controllers/AuthController");
+
+const {
   getUsers,
   createUser,
   editUser,
@@ -30,6 +38,12 @@ const {
 const router = express.Router();
 
 router.get("/auth-users-list", getAuthUsersList);
+
+router.get("/auth-user-list", getAuthUsers);
+router.post("/register-user", registerUser);
+router.post("/login-user", loginUser);
+router.post("/forgot-password", forgotPassword);
+router.post("/reset-password", resetPassword);
 
 router.get("/users", getUsers);
 router.post("/users", createUser);
